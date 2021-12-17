@@ -4,18 +4,23 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
+	use frame_support::pallet_prelude::*;
 	use frame_support::{
-		dispatch::{DispatchResult, DispatchResultWithPostInfo},
-		pallet_prelude::*,
-		sp_runtime::traits::{Hash, Zero},
-		traits::{Currency, ExistenceRequirement, Randomness},
+		sp_runtime::traits::Hash,
+		traits::{tokens::ExistenceRequirement, Currency, Randomness},
+		transactional,
 	};
 	use frame_system::pallet_prelude::*;
 	use sp_io::hashing::blake2_128;
 
-	// TODO Part II: Struct for holding Kitty information.
+	#[cfg(feature = "std")]
+	use frame_support::serde::{Deserialize, Serialize};
 
-	// TODO Part II: Enum and implementation to handle Gender type in Kitty struct.
+	// ACTION #1: Write a Struct to hold Kitty information.
+
+	// ACTION #2: Enum declaration for Gender.
+
+	// ACTION #3: Implementation to handle Gender type in Kitty struct.
 
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
@@ -30,7 +35,9 @@ pub mod pallet {
 		/// The Currency handler for the Kitties pallet.
 		type Currency: Currency<Self::AccountId>;
 
-		// TODO Part II: Specify the custom types for our runtime.
+		// ACTION #5: Specify the type for Randomness we want to specify for runtime.
+
+		// ACTION #9: Add MaxKittyOwned constant
 	}
 
 	// Errors.
@@ -39,6 +46,7 @@ pub mod pallet {
 		// TODO Part III
 	}
 
+	// Events.
 	#[pallet::event]
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
@@ -46,31 +54,37 @@ pub mod pallet {
 	}
 
 	#[pallet::storage]
-	#[pallet::getter(fn kitty_cnt)]
+	#[pallet::getter(fn all_kitties_count)]
 	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 
-	// TODO Part II: Remaining storage items.
+	// ACTION #7: Remaining storage items.
 
-	// TODO Part III: Our pallet's genesis configuration.
+	// TODO Part IV: Our pallet's genesis configuration.
 
 	#[pallet::call]
 	impl<T: Config> Pallet<T> {
 		// TODO Part III: create_kitty
 
-		// TODO Part III: set_price
+		// TODO Part IV: set_price
 
-		// TODO Part III: transfer
+		// TODO Part IV: transfer
 
-		// TODO Part III: buy_kitty
+		// TODO Part IV: buy_kitty
 
-		// TODO Part III: breed_kitty
+		// TODO Part IV: breed_kitty
 	}
 
-	// TODO Parts II: helper function for Kitty struct
+	//** Our helper functions.**//
 
 	impl<T: Config> Pallet<T> {
+		// ACTION #4: helper function for Kitty struct
+
 		// TODO Part III: helper functions for dispatchable functions
 
-		// TODO: increment_nonce, random_hash, mint, transfer_from
+		// ACTION #6: funtion to randomly generate DNA
+
+		// TODO Part III: mint
+
+		// TODO Part IV: transfer_kitty_to
 	}
 }
