@@ -49,6 +49,7 @@ tag = 'devhub/latest'
 version = '4.0.0-dev'
 
 [dependencies.serde]
+default-features = false
 version =  '1.0.129'
 
 [dev-dependencies.sp-core]
