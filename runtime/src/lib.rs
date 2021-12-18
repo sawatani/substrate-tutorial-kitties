@@ -259,6 +259,7 @@ impl pallet_balances::Config for Runtime {
 parameter_types! {
 	pub const TransactionByteFee: Balance = 1;
 	pub OperationalFeeMultiplier: u8 = 5;
+	pub const MaxKittyOwned: u32 = 9999;
 }
 
 impl pallet_transaction_payment::Config for Runtime {
@@ -279,6 +280,7 @@ impl pallet_kitties::Config for Runtime {
 	type Event = Event;
 	type Currency = Balances;
 	type KittyRandomness = RandomnessCollectiveFlip;
+	type MaxKittyOwned = MaxKittyOwned;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
